@@ -17,5 +17,7 @@ namespace BCOM.API.Services
         bool DeleteCustomer(int id);
 
         Customer UpdateCustomer(int id, Customer customer);
+
+        Customer GetCustomerByDni(int dni);
     }
 }

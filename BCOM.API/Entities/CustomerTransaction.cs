@@ -12,9 +12,15 @@ namespace BCOM.API.Entities
         [Key]
         public int Id { get; set; }
         public DateTime TransactionDate { get; set; }
-        public bool TransactionStatus { get; set; }
+        public string TransactionStatus { get; set; }
         public int IdCustomer { get; set; }
         [ForeignKey("IdCustomer")]
         public Customer Customer { get; set; }
+    }
+
+    public class SearchQuery
+    {
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
     }
 }

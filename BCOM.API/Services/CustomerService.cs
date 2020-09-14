@@ -46,5 +46,11 @@ namespace BCOM.API.Services
             var result = _repo.UpdateCustomer(id, customer);
             return result;
         }
+
+        public Customer GetCustomerByDni(int dni)
+        {
+            var result = _repo.GetCustomerByDni(dni);
+            return result;
+        }
     }
 }

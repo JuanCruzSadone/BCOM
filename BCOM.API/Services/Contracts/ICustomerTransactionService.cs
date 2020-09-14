@@ -23,5 +23,7 @@ namespace BCOM.API.Services
         CustomerTransaction UpdateCustomerTransaction(int id, CustomerTransaction customerTransaction);
 
         List<CustomerTransaction> GetCustomerTransactionsByCustomerId(int id);
+
+        List<CustomerTransaction> SearchByDate(SearchQuery query);
     }
 }

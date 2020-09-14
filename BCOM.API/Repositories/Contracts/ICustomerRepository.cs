@@ -22,5 +22,7 @@ namespace BCOM.API.Repositories
 
         Customer UpdateCustomer(int id, Customer customer);
 
+        Customer GetCustomerByDni(int dni);
+
     }
 }

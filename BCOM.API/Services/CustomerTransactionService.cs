@@ -46,6 +46,12 @@ namespace BCOM.API.Services
             return result;
         }
 
+        public List<CustomerTransaction> SearchByDate(SearchQuery query)
+        {
+            var result = _repo.SearchByDate(query);
+            return result;
+        }
+
         public CustomerTransaction UpdateCustomerTransaction(int id, CustomerTransaction customerTransaction)
         {
             var result = _repo.UpdateCustomerTransaction(id, customerTransaction);

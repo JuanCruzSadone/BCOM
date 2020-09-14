@@ -60,5 +60,11 @@ namespace BCOM.API.Repositories
             var result = _db.Customer.FirstOrDefault(x => x.Id == id);
             return result;
         }
+
+        public Customer GetCustomerByDni(int dni)
+        {
+            var result = _db.Customer.FirstOrDefault(x => x.Dni == dni);
+            return result;
+        }
     }
 }

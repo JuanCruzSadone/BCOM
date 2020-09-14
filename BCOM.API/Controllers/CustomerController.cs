@@ -75,6 +75,16 @@ namespace BCOM.API.Controllers
             var result = _customerService.DeleteCustomer(id);
             return Ok();
         }
+
+        /// <summary>
+        /// Get customer by given Dni
+        /// </summary>
+        [HttpGet("getCustomerByDni/{dni}")]
+        public ActionResult<Customer> GetCustomerByDni(int dni)
+        {
+            var result = _customerService.GetCustomerByDni(dni);
+            return result;
+        }
     }
 }
 

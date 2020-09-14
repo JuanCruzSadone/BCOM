@@ -49,7 +49,7 @@ namespace BCOM.API.Repositories
 
         public List<CustomerTransaction> GetCustomerTransactions()
         {
-            var result = _db.CustomerTransaction.ToList();
+            var result = _db.CustomerTransaction.Include(x => x.Customer).ToList();
 
             return result;
         }
@@ -57,6 +57,13 @@ namespace BCOM.API.Repositories
         public List<CustomerTransaction> GetCustomerTransactionsByCustomerId(int id)
         {
             var result = _db.CustomerTransaction.Where(x => x.IdCustomer == id).ToList();
+
+            return result;
+        }
+
+        public List<CustomerTransaction> SearchByDate(SearchQuery query)
+        {
+            var result = _db.CustomerTransaction.Where(x => x.TransactionDate >= query.DateFrom && x.TransactionDate <= query.DateTo).ToList();
 
             return result;
         }

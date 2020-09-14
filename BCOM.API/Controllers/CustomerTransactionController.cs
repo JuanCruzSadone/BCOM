@@ -83,6 +83,16 @@ namespace BCOM.API.Controllers
             var result = _customerTransactionService.GetCustomerTransactionsByCustomerId(id);
             return result;
         }
+
+        /// <summary>
+        /// Get customerTransaction by given dates
+        /// </summary>
+        [HttpPost("searchByDate/")]
+        public ActionResult<List<CustomerTransaction>> SearchByDate([FromBody] SearchQuery query)
+        {
+            var result = _customerTransactionService.SearchByDate(query);
+            return result;
+        }
     }
 }
 
