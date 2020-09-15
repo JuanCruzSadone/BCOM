@@ -16,10 +16,11 @@ create table CustomerTransaction
 (
 Id int IDENTITY(1,1) PRIMARY KEY,
 IdCustomer int not null,
-TransactionStatus bit,
+TransactionStatus varchar(30),
 TransactionDate datetime,
 FOREIGN KEY (IdCustomer) REFERENCES Customer(Id),
 )
 go
+
 
 
