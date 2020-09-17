@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BCOM.API.Entities;
 using BCOM.API.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -21,9 +22,9 @@ namespace BCOM.API.Controllers
         /// Get all customerTransactions.
         /// </summary>
         [HttpGet]
-        public ActionResult<List<CustomerTransaction>> Get()
+        public async Task<ActionResult<List<CustomerTransaction>>> Get()
         {
-            var result = _customerTransactionService.GetCustomerTransactions();
+            var result = await _customerTransactionService.GetCustomerTransactions();
             return result;
         }
 
@@ -31,9 +32,9 @@ namespace BCOM.API.Controllers
         /// Get customerTransaction by given Id
         /// </summary>
         [HttpGet("{id}")]
-        public ActionResult<CustomerTransaction> Get(int id)
+        public async Task<ActionResult<CustomerTransaction>> Get(int id)
         {
-            var result = _customerTransactionService.GetCustomerTransactionById(id);
+            var result = await _customerTransactionService.GetCustomerTransactionById(id);
             return result;
         }
 
@@ -41,11 +42,11 @@ namespace BCOM.API.Controllers
         /// Creates a new customerTransaction.
         /// </summary>
         [HttpPost]
-        public ActionResult Create([FromBody] CustomerTransaction customerTransaction)
+        public async Task<ActionResult> Create([FromBody] CustomerTransaction customerTransaction)
         {
             try
             {
-                var result = _customerTransactionService.CreateCustomerTransaction(customerTransaction);
+                var result = await _customerTransactionService.CreateCustomerTransaction(customerTransaction);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -58,9 +59,9 @@ namespace BCOM.API.Controllers
         /// Updates a customerTransaction.
         /// </summary>
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] CustomerTransaction customerTransaction)
+        public async Task<ActionResult> Put(int id, [FromBody] CustomerTransaction customerTransaction)
         {
-            var result = _customerTransactionService.UpdateCustomerTransaction(id, customerTransaction);
+            var result = await _customerTransactionService.UpdateCustomerTransaction(id, customerTransaction);
             return Ok(result);
         }
 
@@ -68,9 +69,9 @@ namespace BCOM.API.Controllers
         /// Deletes a customerTransaction.
         /// </summary>
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var result = _customerTransactionService.DeleteCustomerTransaction(id);
+            var result = await _customerTransactionService.DeleteCustomerTransaction(id);
             return Ok();
         }
 
@@ -78,9 +79,9 @@ namespace BCOM.API.Controllers
         /// Get customerTransaction by given Customer Id
         /// </summary>
         [HttpGet("getCustomerTransactionByCustomerId/{id}")]
-        public ActionResult<List<CustomerTransaction>> GetCustomerTransactionByCustomerId(int id)
+        public async Task<ActionResult<List<CustomerTransaction>>> GetCustomerTransactionByCustomerId(int id)
         {
-            var result = _customerTransactionService.GetCustomerTransactionsByCustomerId(id);
+            var result = await _customerTransactionService.GetCustomerTransactionsByCustomerId(id);
             return result;
         }
 
@@ -88,9 +89,9 @@ namespace BCOM.API.Controllers
         /// Get customerTransaction by given dates
         /// </summary>
         [HttpPost("searchByDate/")]
-        public ActionResult<List<CustomerTransaction>> SearchByDate([FromBody] SearchQuery query)
+        public async Task<ActionResult<List<CustomerTransaction>>> SearchByDate([FromBody] SearchQuery query)
         {
-            var result = _customerTransactionService.SearchByDate(query);
+            var result = await _customerTransactionService.SearchByDate(query);
             return result;
         }
     }

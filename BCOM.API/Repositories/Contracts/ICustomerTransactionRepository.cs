@@ -8,22 +8,18 @@ namespace BCOM.API.Repositories
 {
     public interface ICustomerTransactionRepository
     {
-        CustomerTransaction GetCustomerTransactionById(int id);
+        Task<CustomerTransaction> GetCustomerTransactionById(int id);
 
+        Task<CustomerTransaction> CreateCustomerTransaction(CustomerTransaction customerTransaction);
 
-        CustomerTransaction CreateCustomerTransaction(CustomerTransaction customerTransaction);
+        Task<List<CustomerTransaction>> GetCustomerTransactions();
 
+        Task<bool> DeleteCustomerTransaction(int id);
 
-        List<CustomerTransaction> GetCustomerTransactions();
+        Task<CustomerTransaction> UpdateCustomerTransaction(int id, CustomerTransaction customerTransaction);
 
+        Task<List<CustomerTransaction>> GetCustomerTransactionsByCustomerId(int id);
 
-        bool DeleteCustomerTransaction(int id);
-
-
-        CustomerTransaction UpdateCustomerTransaction(int id, CustomerTransaction customerTransaction);
-
-        List<CustomerTransaction> GetCustomerTransactionsByCustomerId(int id);
-
-        List<CustomerTransaction> SearchByDate(SearchQuery query);
+        Task<List<CustomerTransaction>> SearchByDate(SearchQuery query);
     }
 }

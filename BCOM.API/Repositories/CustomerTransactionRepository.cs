@@ -18,61 +18,61 @@ namespace BCOM.API.Repositories
             _db = db;
         }
 
-        public CustomerTransaction CreateCustomerTransaction(CustomerTransaction customerTransaction)
+        public async Task<CustomerTransaction> CreateCustomerTransaction(CustomerTransaction customerTransaction)
         {
-            var result = _db.CustomerTransaction.Add(customerTransaction);
+            var result = await _db.CustomerTransaction.AddAsync(customerTransaction);
 
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             return result.Entity;
         }
 
-        public bool DeleteCustomerTransaction(int id)
+        public async Task<bool> DeleteCustomerTransaction(int id)
         {
-            var result = _db.CustomerTransaction.FirstOrDefault(x => x.Id == id);
+            var result = await _db.CustomerTransaction.FirstOrDefaultAsync(x => x.Id == id);
 
             if (result != null)
             {
                 _db.CustomerTransaction.Remove(result);
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
             }
 
             return true;
         }
 
-        public CustomerTransaction GetCustomerTransactionById(int id)
+        public async Task<CustomerTransaction> GetCustomerTransactionById(int id)
         {
-            var result = _db.CustomerTransaction.FirstOrDefault(x => x.Id == id);
+            var result = await _db.CustomerTransaction.FirstOrDefaultAsync(x => x.Id == id);
 
             return result;
         }
 
-        public List<CustomerTransaction> GetCustomerTransactions()
+        public async Task<List<CustomerTransaction>> GetCustomerTransactions()
         {
-            var result = _db.CustomerTransaction.Include(x => x.Customer).ToList();
+            var result = await _db.CustomerTransaction.Include(x => x.Customer).ToListAsync();
 
             return result;
         }
 
-        public List<CustomerTransaction> GetCustomerTransactionsByCustomerId(int id)
+        public async Task<List<CustomerTransaction>> GetCustomerTransactionsByCustomerId(int id)
         {
-            var result = _db.CustomerTransaction.Where(x => x.IdCustomer == id).ToList();
+            var result = await _db.CustomerTransaction.Where(x => x.IdCustomer == id).ToListAsync();
 
             return result;
         }
 
-        public List<CustomerTransaction> SearchByDate(SearchQuery query)
+        public async Task<List<CustomerTransaction>> SearchByDate(SearchQuery query)
         {
-            var result = _db.CustomerTransaction.Where(x => x.TransactionDate >= query.DateFrom && x.TransactionDate <= query.DateTo).ToList();
+            var result = await _db.CustomerTransaction.Where(x => x.TransactionDate >= query.DateFrom && x.TransactionDate <= query.DateTo).ToListAsync();
 
             return result;
         }
 
-        public CustomerTransaction UpdateCustomerTransaction(int id, CustomerTransaction customerTransaction)
+        public async Task<CustomerTransaction> UpdateCustomerTransaction(int id, CustomerTransaction customerTransaction)
         {
             _db.Entry(customerTransaction).State = EntityState.Modified;
-            _db.SaveChanges();
-            var result = _db.CustomerTransaction.FirstOrDefault(x => x.Id == id);
+            await _db.SaveChangesAsync();
+            var result = await _db.CustomerTransaction.FirstOrDefaultAsync(x => x.Id == id);
             return result;
         }
     }

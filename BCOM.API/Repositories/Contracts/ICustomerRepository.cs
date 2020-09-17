@@ -8,21 +8,16 @@ namespace BCOM.API.Repositories
 {
     public interface ICustomerRepository
     {
-        Customer GetCustomerById(int id);
+        Task<Customer> GetCustomerById(int id);
 
+        Task<Customer> CreateCustomer(Customer customer);
 
-        Customer CreateCustomer(Customer customer);
+        Task<List<Customer>> GetCustomers();
 
+        Task<bool> DeleteCustomer(int id);
 
-        List<Customer> GetCustomers();
+        Task<Customer> UpdateCustomer(int id, Customer customer);
 
-
-        bool DeleteCustomer(int id);
-
-
-        Customer UpdateCustomer(int id, Customer customer);
-
-        Customer GetCustomerByDni(int dni);
-
+        Task<Customer> GetCustomerByDni(int dni);
     }
 }

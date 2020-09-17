@@ -8,16 +8,16 @@ namespace BCOM.API.Services
 {
     public interface ICustomerService
     {
-        Customer GetCustomerById(int id);
+        Task<Customer> GetCustomerById(int id);
 
-        List<Customer> GetCustomers();
+        Task<Customer> CreateCustomer(Customer customer);
 
-        Customer CreateCustomer(Customer customer);
+        Task<List<Customer>> GetCustomers();
 
-        bool DeleteCustomer(int id);
+        Task<bool> DeleteCustomer(int id);
 
-        Customer UpdateCustomer(int id, Customer customer);
+        Task<Customer> UpdateCustomer(int id, Customer customer);
 
-        Customer GetCustomerByDni(int dni);
+        Task<Customer> GetCustomerByDni(int dni);
     }
 }

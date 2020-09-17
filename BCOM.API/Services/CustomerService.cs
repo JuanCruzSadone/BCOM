@@ -16,40 +16,40 @@ namespace BCOM.API.Services
             _repo = repo;
         }
 
-        public Customer CreateCustomer(Customer customer)
+        public async Task<Customer> CreateCustomer(Customer customer)
         {
-            var result = _repo.CreateCustomer(customer);
+            var result = await _repo.CreateCustomer(customer);
             return result;
         }
 
-        public Customer GetCustomerById(int id)
+        public async Task<Customer> GetCustomerById(int id)
         {
-            var result = _repo.GetCustomerById(id);
+            var result = await _repo.GetCustomerById(id);
 
             return result;
         }
 
-        public List<Customer> GetCustomers()
+        public async Task<List<Customer>> GetCustomers()
         {
-            var result = _repo.GetCustomers();
+            var result = await _repo.GetCustomers();
             return result;
         }
 
-        public bool DeleteCustomer(int id)
+        public async Task<bool> DeleteCustomer(int id)
         {
-            var result = _repo.DeleteCustomer(id);
+            var result = await _repo.DeleteCustomer(id);
             return result;
         }
 
-        public Customer UpdateCustomer(int id, Customer customer)
+        public async Task<Customer> UpdateCustomer(int id, Customer customer)
         {
-            var result = _repo.UpdateCustomer(id, customer);
+            var result = await _repo.UpdateCustomer(id, customer);
             return result;
         }
 
-        public Customer GetCustomerByDni(int dni)
+        public async Task<Customer> GetCustomerByDni(int dni)
         {
-            var result = _repo.GetCustomerByDni(dni);
+            var result = await _repo.GetCustomerByDni(dni);
             return result;
         }
     }

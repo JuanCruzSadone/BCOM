@@ -23,9 +23,9 @@ namespace BCOM.API.Controllers
         /// Get all customers.
         /// </summary>
         [HttpGet]
-        public ActionResult<List<Customer>> Get()
+        public async Task<ActionResult<List<Customer>>> Get()
         {
-            var result = _customerService.GetCustomers();
+            var result = await _customerService.GetCustomers();
             return result;
         }
 
@@ -33,9 +33,9 @@ namespace BCOM.API.Controllers
         /// Get customer by given Id
         /// </summary>
         [HttpGet("{id}")]
-        public ActionResult<Customer> Get(int id)
+        public async Task<ActionResult<Customer>> Get(int id)
         {
-            var result = _customerService.GetCustomerById(id);
+            var result = await _customerService.GetCustomerById(id);
             return result;
         }
 
@@ -43,11 +43,11 @@ namespace BCOM.API.Controllers
         /// Creates a new Customer.
         /// </summary>
         [HttpPost]
-        public ActionResult Create([FromBody] Customer customer)
+        public async Task<ActionResult> Create([FromBody] Customer customer)
         {
             try
             {
-                var result = _customerService.CreateCustomer(customer);
+                var result = await _customerService.CreateCustomer(customer);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -60,9 +60,9 @@ namespace BCOM.API.Controllers
         /// Updates a customer.
         /// </summary>
         [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] Customer customer)
+        public async Task<ActionResult> Put(int id, [FromBody] Customer customer)
         {
-            var result = _customerService.UpdateCustomer(id, customer);
+            var result = await _customerService.UpdateCustomer(id, customer);
             return Ok(result);
         }
 
@@ -70,9 +70,9 @@ namespace BCOM.API.Controllers
         /// Deletes a customer.
         /// </summary>
         [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            var result = _customerService.DeleteCustomer(id);
+            var result = await _customerService.DeleteCustomer(id);
             return Ok();
         }
 
@@ -80,9 +80,9 @@ namespace BCOM.API.Controllers
         /// Get customer by given Dni
         /// </summary>
         [HttpGet("getCustomerByDni/{dni}")]
-        public ActionResult<Customer> GetCustomerByDni(int dni)
+        public async Task<ActionResult<Customer>> GetCustomerByDni(int dni)
         {
-            var result = _customerService.GetCustomerByDni(dni);
+            var result = await _customerService.GetCustomerByDni(dni);
             return result;
         }
     }

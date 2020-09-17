@@ -17,53 +17,53 @@ namespace BCOM.API.Repositories
             _db = db;
         }
 
-        public Customer GetCustomerById(int id)
+        public async Task<Customer> GetCustomerById(int id)
         {
-            var result = _db.Customer.FirstOrDefault(x => x.Id == id);
+            var result = await _db.Customer.FirstOrDefaultAsync(x => x.Id == id);
 
             return result;
         }
 
-        public Customer CreateCustomer(Customer customer)
+        public async Task<Customer> CreateCustomer(Customer customer)
         {
-            var result = _db.Customer.Add(customer);
+            var result = await _db.Customer.AddAsync(customer);
 
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
 
             return result.Entity;
         }
 
-        public List<Customer> GetCustomers()
+        public async Task<List<Customer>> GetCustomers()
         {
-            var result = _db.Customer.ToList();
+            var result = await _db.Customer.ToListAsync();
 
             return result;
         }
 
-        public bool DeleteCustomer(int id)
+        public async Task<bool> DeleteCustomer(int id)
         {
-            var result = _db.Customer.FirstOrDefault(x => x.Id == id);
+            var result = await _db.Customer.FirstOrDefaultAsync(x => x.Id == id);
 
             if (result != null)
             {
                 _db.Customer.Remove(result);
-                _db.SaveChanges();
+                await _db.SaveChangesAsync();
             }
 
             return true;
         }
 
-        public Customer UpdateCustomer(int id, Customer customer)
+        public async Task<Customer> UpdateCustomer(int id, Customer customer)
         {
             _db.Entry(customer).State = EntityState.Modified;
-            _db.SaveChanges();
-            var result = _db.Customer.FirstOrDefault(x => x.Id == id);
+            await _db.SaveChangesAsync();
+            var result = await _db.Customer.FirstOrDefaultAsync(x => x.Id == id);
             return result;
         }
 
-        public Customer GetCustomerByDni(int dni)
+        public async Task<Customer> GetCustomerByDni(int dni)
         {
-            var result = _db.Customer.FirstOrDefault(x => x.Dni == dni);
+            var result = await _db.Customer.FirstOrDefaultAsync(x => x.Dni == dni);
             return result;
         }
     }
